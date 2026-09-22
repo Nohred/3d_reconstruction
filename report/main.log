@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.19)  22 SEP 2026 16:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.4.19)  22 SEP 2026 17:03
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -451,285 +451,242 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Citation `calibracion_rgbd' on page 1 undefined on input line 57.
-
-
-LaTeX Warning: Citation `astrj_pointcloud' on page 1 undefined on input line 57.
+Overfull \hbox (26.5038pt too wide) in paragraph at lines 53--54
+[]\T1/cmr/m/n/10.95 Este proyecto se centra en una \T1/cmr/bx/n/10.95 comparación experimental de cuatro técnicas de reconstrucción
+ []
 
 
-Overfull \hbox (0.28117pt too wide) in paragraph at lines 57--58
-\T1/cmr/m/n/10.95 que las cámaras RGB-D de bajo costo presentan mayor ruido, menor resolución efectiva y degradación
+Overfull \hbox (6.63246pt too wide) in paragraph at lines 53--54
+\T1/cmr/m/n/10.95 condiciones controladas, usando \T1/cmr/bx/n/10.95 modelos impresos en 3D de geometría conocida \T1/cmr/m/n/10.95 como referencia
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `astrj_pointcloud' on page 2 undefined on input line 69.
+LaTeX Warning: Citation `realsense_lidar_multisensor' on page 2 undefined on input line 62.
 
 
-LaTeX Warning: Citation `azure_realsense_comp' on page 2 undefined on input line 69.
+LaTeX Warning: Citation `realsense_transparent' on page 2 undefined on input line 62.
 
 
-LaTeX Warning: Citation `azure_indoor' on page 2 undefined on input line 69.
-
-
-LaTeX Warning: Citation `mobilebrick' on page 2 undefined on input line 72.
-
-
-LaTeX Warning: Citation `scanner_sim' on page 2 undefined on input line 72.
-
-
-LaTeX Warning: Citation `realsense_d435i_d455' on page 2 undefined on input line 73.
-
-
-LaTeX Warning: Citation `low_cost_scanning' on page 2 undefined on input line 73.
-
-
-Overfull \hbox (6.49907pt too wide) in paragraph at lines 73--74
-\T1/cmr/m/n/10.95 en un margen de tiempo reducido (10 semanas), replicando y adaptando metodologías reportadas
+Overfull \hbox (6.26567pt too wide) in paragraph at lines 62--63
+\T1/cmr/bx/n/10.95 sólido \T1/cmr/m/n/10.95 (familia L500, p. ej. L515). Estos son mecanismos de medición de profundidad físicamente
  []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 77.
+LaTeX Warning: Citation `nerf_gs_sfm_heritage' on page 2 undefined on input line 64.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                \kern 3.0235pt
-(hyperref)                removed on input line 77.
+LaTeX Warning: Citation `mobilebrick' on page 2 undefined on input line 65.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 77.
+LaTeX Warning: Citation `sdf2sdf' on page 2 undefined on input line 65.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\blacksquare' on input line 77.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 77.
-
-
-Overfull \hbox (26.65115pt too wide) in paragraph at lines 82--83
-[]\T1/cmr/m/n/10.95 El proyecto se centra únicamente
+Overfull \hbox (35.19496pt too wide) in paragraph at lines 73--74
+\T1/cmr/m/n/10.95 El proyecto compara experimentalmente cuatro técnicas de reconstrucción 3D de objetos pequeños/medianos
  []
 
 
-Overfull \hbox (10.64319pt too wide) in paragraph at lines 82--83
-\T1/cmr/m/n/10.95 en caracterizar el desempeño de una o más cámaras RGB-D (p. ej. RealSense D435i, Kinect/Azure
+Overfull \hbox (0.81143pt too wide) in paragraph at lines 76--77
+[]\T1/cmr/bx/n/10.95 Cámaras de profundidad RealSense\T1/cmr/m/n/10.95 , incluyendo la sub-comparación entre principio estéreo
  []
 
 [2]
 
-LaTeX Warning: Citation `low_cost_scanning' on page 3 undefined on input line 84.
+LaTeX Warning: Citation `realsense_transparent' on page 3 undefined on input line 96.
 
 
-LaTeX Warning: Citation `structured_light_photogrammetry' on page 3 undefined on input line 84.
+LaTeX Warning: Citation `realsense_l515_specs' on page 3 undefined on input line 96.
 
 
-Overfull \hbox (2.11194pt too wide) in paragraph at lines 84--85
-[]\T1/cmr/m/n/10.95 Se amplía el alcance
+LaTeX Warning: Citation `realsense_lidar_multisensor' on page 3 undefined on input line 96.
+
+
+LaTeX Warning: Citation `nerf_gs_sfm_heritage' on page 3 undefined on input line 99.
+
+
+Overfull \hbox (15.65828pt too wide) in paragraph at lines 99--100
+\T1/cmr/m/n/10.95 Un estudio reciente evalúa directamente las tres técnicas basadas en imágenes -- SfM-MVS (fotogrametría
  []
 
 
-Overfull \hbox (9.61896pt too wide) in paragraph at lines 102--103
-\T1/cmr/m/n/10.95 estudiada en visión por computadora, con múltiples revisiones y estudios comparativos que documentan
- []
+LaTeX Warning: Citation `low_cost_scanning' on page 3 undefined on input line 102.
 
 
-LaTeX Warning: Citation `rgbd_review' on page 3 undefined on input line 105.
+LaTeX Warning: Citation `mobilebrick' on page 3 undefined on input line 105.
 
 
-LaTeX Warning: Citation `rgbd_survey' on page 3 undefined on input line 105.
+LaTeX Warning: Citation `sdf2sdf' on page 3 undefined on input line 105.
 
 
-LaTeX Warning: Citation `realsense_d435i_d455' on page 3 undefined on input line 108.
+LaTeX Warning: Citation `scanner_sim' on page 3 undefined on input line 105.
 
 [3]
 
-LaTeX Warning: Citation `low_cost_scanning' on page 4 undefined on input line 111.
+LaTeX Warning: Citation `costo_digitalizacion' on page 4 undefined on input line 108.
 
 
-LaTeX Warning: Citation `mobilebrick' on page 4 undefined on input line 114.
+LaTeX Warning: Citation `review_scanners' on page 4 undefined on input line 108.
 
 
-LaTeX Warning: Citation `sdf2sdf' on page 4 undefined on input line 114.
-
-
-LaTeX Warning: Citation `scanner_sim' on page 4 undefined on input line 114.
-
-
-LaTeX Warning: Citation `gravel_bed' on page 4 undefined on input line 114.
-
-
-LaTeX Warning: Citation `dmp_metric' on page 4 undefined on input line 117.
-
-
-LaTeX Warning: Citation `no_gt_assessment' on page 4 undefined on input line 117.
-
-
-LaTeX Warning: Citation `costo_digitalizacion' on page 4 undefined on input line 120.
-
-
-LaTeX Warning: Citation `review_scanners' on page 4 undefined on input line 120.
-
-[4]
-
-LaTeX Warning: Citation `mobilebrick' on page 5 undefined on input line 141.
-
-
-LaTeX Warning: Citation `sdf2sdf' on page 5 undefined on input line 141.
-
-
-LaTeX Warning: Citation `scanner_sim' on page 5 undefined on input line 141.
-
-
-Overfull \hbox (4.69713pt too wide) in paragraph at lines 142--143
-\T1/cmr/m/n/10.95 esferas impresas), tomar medidas directas con calibrador vernier o micrómetro sobre dimensiones
+Overfull \hbox (13.9729pt too wide) in paragraph at lines 122--123
+[]\T1/cmr/m/n/10.95 Serie de fotografías RGB (30--80 imágenes) reutilizada como entrada tanto para fotogrametría
  []
 
 
-LaTeX Warning: Citation `depth_validation_dataset' on page 5 undefined on input line 143.
+Overfull \hbox (8.18477pt too wide) in paragraph at lines 127--128
+[]\T1/cmr/m/n/10.95 Escalado métrico consistente usando el tamaño conocido del objeto impreso como referencia. 
+ []
+
+[4]
+Overfull \hbox (35.23825pt too wide) in paragraph at lines 140--141
+[]\T1/cmr/m/n/10.95 Ajuste de hiperparámetros básico (número de iteraciones, resolución) para cada técnica, documentando
+ []
 
 
-LaTeX Warning: Citation `dmp_metric' on page 5 undefined on input line 144.
+LaTeX Warning: Citation `sdf2sdf' on page 5 undefined on input line 147.
+
+
+LaTeX Warning: Citation `scanner_sim' on page 5 undefined on input line 147.
+
+
+LaTeX Warning: Citation `chamfer_survey' on page 5 undefined on input line 148.
+
+
+LaTeX Warning: Citation `plant_reconstruction' on page 5 undefined on input line 148.
+
+
+LaTeX Warning: Citation `nerf_sfm_comparison' on page 5 undefined on input line 152.
+
+
+LaTeX Warning: Citation `point_cloud_completion_survey' on page 5 undefined on input line 153.
+
+
+LaTeX Warning: Citation `asset_inspection_benchmark' on page 5 undefined on input line 153.
+
+
+LaTeX Warning: Citation `nerf_gs_sfm_heritage' on page 5 undefined on input line 158.
+
+
+Overfull \hbox (18.91824pt too wide) in paragraph at lines 161--162
+\T1/cmr/m/n/10.95 Tiempo de captura, tiempo de procesamiento/entrenamiento, y requerimientos de hardware (CPU/GPU)
+ []
+
+
+LaTeX Warning: Citation `low_cost_scanning' on page 5 undefined on input line 164.
 
 [5]
 
-LaTeX Warning: Citation `cad_registration' on page 6 undefined on input line 153.
+LaTeX Warning: Reference `tab:cronograma' on page 6 undefined on input line 182.
 
 
-LaTeX Warning: Citation `sdf2sdf' on page 6 undefined on input line 161.
-
-
-LaTeX Warning: Citation `scanner_sim' on page 6 undefined on input line 161.
-
-
-LaTeX Warning: Citation `chamfer_survey' on page 6 undefined on input line 162.
-
-
-LaTeX Warning: Citation `plant_reconstruction' on page 6 undefined on input line 162.
-
-
-LaTeX Warning: Citation `nerf_sfm_comparison' on page 6 undefined on input line 166.
-
-
-LaTeX Warning: Citation `point_cloud_completion_survey' on page 6 undefined on input line 167.
-
-
-LaTeX Warning: Citation `asset_inspection_benchmark' on page 6 undefined on input line 167.
-
-
-LaTeX Warning: Citation `dmp_metric' on page 6 undefined on input line 172.
-
-
-LaTeX Warning: Citation `no_gt_assessment' on page 6 undefined on input line 175.
-
-
-LaTeX Warning: Citation `low_cost_scanning' on page 6 undefined on input line 175.
-
-
-LaTeX Warning: Citation `mobilebrick' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `sdf2sdf' on page 6 undefined on input line 178.
-
-[6]
-
-LaTeX Warning: Citation `costo_digitalizacion' on page 7 undefined on input line 183.
-
-
-Overfull \hbox (10.00882pt too wide) in paragraph at lines 183--184
-[]\T1/cmr/m/n/10.95 Costo estimado por técnica evaluada experimentalmente (cámara de profundidad, fotogrametría);
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[]|\T1/cmr/m/n/10.95 Revisión bibliográfica acotada y
  []
 
 
-Overfull \hbox (0.34059pt too wide) in paragraph at lines 193--194
-[]\T1/cmr/bx/n/10.95 Protocolo experimental replicable: \T1/cmr/m/n/10.95 scripts documentados para captura, preprocesamiento,
+Underfull \hbox (badness 1406) in paragraph at lines 196--196
+\T1/cmr/m/n/10.95 capturas con cámara(s) de profundidad
  []
 
 
-LaTeX Warning: Reference `tab:cronograma' on page 7 undefined on input line 205.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--218
-\T1/cmr/m/n/10.95 física de referencia con calibrador,
+Underfull \hbox (badness 2990) in paragraph at lines 196--196
+\T1/cmr/m/n/10.95 y series fotográficas (Ulises: capturas
  []
 
 
-Underfull \hbox (badness 7047) in paragraph at lines 218--218
-\T1/cmr/m/n/10.95 y primeras capturas con cámara de
+Underfull \hbox (badness 7433) in paragraph at lines 196--196
+\T1/cmr/m/n/10.95 fotográficas y control de calidad de
  []
 
 
-Underfull \hbox (badness 4217) in paragraph at lines 218--218
-\T1/cmr/m/n/10.95 medición y control de calidad de la
+Underfull \hbox (badness 2165) in paragraph at lines 197--197
+[]|\T1/cmr/m/n/10.95 Definición y desarrollo del pipeline de
  []
 
 
-Underfull \hbox (badness 1521) in paragraph at lines 219--219
-\T1/cmr/m/n/10.95 registro ICP inicial (Ulises: filtrado y
+Underfull \hbox (badness 6268) in paragraph at lines 197--197
+\T1/cmr/m/n/10.95 CAD (Ulises: registro/ICP; Jonatan:
  []
 
 
-Underfull \hbox (badness 1354) in paragraph at lines 221--221
-[]|\T1/cmr/m/n/10.95 Implementación de métricas adicionales:
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[]|\T1/cmr/m/n/10.95 Reconstrucción con cámara(s)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
-[]|\T1/cmr/m/n/10.95 (Si el avance lo permite) Captura
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+\T1/cmr/m/n/10.95 de profundidad y fotogrametría
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 222--222
-\T1/cmr/m/n/10.95 complementaria por fotogrametría sobre
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+\T1/cmr/m/n/10.95 (SfM/COLMAP) sobre el pipeline
  []
 
 
-Underfull \hbox (badness 5217) in paragraph at lines 223--223
-\T1/cmr/m/n/10.95 completos y recolección de resultados
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+\T1/cmr/m/n/10.95 estandarizado (Ulises: cámaras de
  []
 
 
-Underfull \hbox (badness 6380) in paragraph at lines 224--224
-[]|\T1/cmr/m/n/10.95 Análisis cuantitativo y cualitativo de
+Underfull \hbox (badness 5578) in paragraph at lines 200--200
+[]|\T1/cmr/m/n/10.95 Entrenamiento inicial de NeRF sobre
  []
 
 
-Underfull \hbox (badness 3690) in paragraph at lines 224--224
-\T1/cmr/m/n/10.95 resultados, síntesis de conclusiones de
+Underfull \hbox (badness 3525) in paragraph at lines 201--201
+[]|\T1/cmr/m/n/10.95 Entrenamiento inicial de 3D Gaussian
  []
 
 
-Underfull \hbox (badness 7133) in paragraph at lines 224--224
-\T1/cmr/m/n/10.95 viabilidad (Ulises: análisis numérico;
+Underfull \hbox (badness 10000) in paragraph at lines 202--202
+[]|\T1/cmr/m/n/10.95 Ajuste fino de las cuatro técnicas
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 224--224
-\T1/cmr/m/n/10.95 Jonatan: análisis de costo/tiempo e
+Underfull \hbox (badness 10000) in paragraph at lines 202--202
+\T1/cmr/m/n/10.95 y extracción final de nubes/mallas
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 227--227
-[]\T1/cmr/m/n/10.95 Table 1: Cronograma comprimido de actividades (10
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
+\T1/cmr/m/n/10.95 (distancia punto-a-malla, Chamfer,
  []
 
-[7] [8]
-Underfull \hbox (badness 1067) in paragraph at lines 246--247
+
+Underfull \hbox (badness 5064) in paragraph at lines 204--204
+\T1/cmr/m/n/10.95 Hausdorff, F-Score, PSNR/SSIM para
+ []
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 204--204
+\T1/cmr/m/n/10.95 técnicas (Jonatan: scripts de métricas;
+ []
+
+
+Underfull \hbox (badness 2538) in paragraph at lines 205--205
+[]|\T1/cmr/m/n/10.95 Análisis comparativo final (cuantitativo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+\T1/cmr/m/n/10.95 + cualitativo + costo/tiempo),
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 205--205
+\T1/cmr/m/n/10.95 redacción del reporte y preparación de
+ []
+
+[6] [7]
+Underfull \hbox (badness 1067) in paragraph at lines 226--227
 []\T1/cmr/m/n/10.95 Survey of Latest Advancements in Deep Learning for Point Cloud Completion. \T1/cmr/m/it/10.95 IEEE
  []
 
-
-Underfull \hbox (badness 2020) in paragraph at lines 261--262
-[]\T1/cmr/m/n/10.95 High-quality indoor scene 3D reconstruction with RGB-D cameras: A brief review.
- []
-
-[9] [10] (./main.aux)
+[8] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -748,21 +705,21 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  C9571CF75D3A1DB0A1227B501C9BF7FE;2939.
+(rerunfilecheck)             After:  1E0D347D532ADAA83CB424C5C8B46A80;2501.
  ) 
 Here is how much of TeX's memory you used:
- 12683 strings out of 476106
- 193212 string characters out of 5793933
+ 12650 strings out of 476106
+ 192628 string characters out of 5793933
  1936975 words of memory out of 5000000
- 34477 multiletter control sequences out of 15000+600000
- 576856 words of font info for 85 fonts, out of 8000000 for 9000
+ 34453 multiletter control sequences out of 15000+600000
+ 572857 words of font info for 72 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,6n,79p,1050b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (10 pages, 232721 bytes).
+ 75i,6n,79p,1306b,571s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (8 pages, 214825 bytes).
 PDF statistics:
- 603 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 548 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 52 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

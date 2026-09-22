@@ -1,9 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1790117343.86605 "/media/ulises-calderon/SteamDisk/Recuperacion/Escuela/9no Semestre/Proyecto Integrador 2/Cameras/report/main.tex" "main.pdf" "main" 1790117344.75999 2
+["pdflatex"] 1790118238.77536 "/media/ulises-calderon/SteamDisk/Recuperacion/Escuela/9no Semestre/Proyecto Integrador 2/Cameras/report/main.tex" "main.pdf" "main" 1790118239.71496 2
   "/etc/texmf/web2c/texmf.cnf" 1776650317.21001 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1095.600pk" 1790117343.33249 38312 2b799a9734221d48b8ab8e078673864d ""
-  "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk" 1790117342.66146 42704 c0ef9c44289861e9e5a46f3a98b111d2 ""
-  "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1440.600pk" 1790105670.54798 52840 d8bdcae7716c3650079ce9bee3a7f3a4 ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1776650640.16022 28952 313cae785ddefc27cc9e72f79ea00192 ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1776650639.72022 31928 bf8e5fd599f5a8af0d9a35df053bc2db ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk" 1776650638.80622 40112 b2c945b123840dc3fc4f2e1ba933df48 ""
@@ -13,11 +11,9 @@
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk" 1784240615.68338 35180 4aa42c6c97ac5885c2b4d0d35faf9fa1 ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1776650637.95822 39096 85a5ca82979720fe921d1838a5a3f499 ""
   "/home/ulises-calderon/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1776894327.23332 12644 f0420ea4a62fbefc971959e24f431f17 ""
-  "/media/ulises-calderon/SteamDisk/Recuperacion/Escuela/9no Semestre/Proyecto Integrador 2/Cameras/report/main.tex" 1790117341.02429 29718 e93bdc8dbbda54f727b931fea9862b8a ""
+  "/media/ulises-calderon/SteamDisk/Recuperacion/Escuela/9no Semestre/Proyecto Integrador 2/Cameras/report/main.tex" 1790118237.20227 23621 75352c99fb6d5360ce713e04646db76f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbi1095.tfm" 1136768653 3072 19a65fbc725cfc66f5a5fc183b9d418b ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbi1200.tfm" 1136768653 3072 ccae1a240ab272417e4399fe942df546 ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbi1440.tfm" 1136768653 3072 4dda4299ed0d9dcf48c6a8bcfdc499fc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1136768653 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -126,9 +122,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1776650323.15572 165012 f177baa1c39a3ebd62c3096a43521a0d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776650371 6830980 988bd310fac969bb47342d351555b7fe ""
-  "main.aux" 1790117344.55293 5016 08bfb5767ef2e0e3f210f92d7dc91f54 "pdflatex"
-  "main.out" 1790117344.55436 2939 c9571cf75d3a1db0a1227b501c9bf7fe "pdflatex"
-  "main.tex" 1790117341.02429 29718 e93bdc8dbbda54f727b931fea9862b8a ""
+  "main.aux" 1790118239.52227 3701 c153725647e0a82e91466fb0bcb2cdbb "pdflatex"
+  "main.out" 1790118239.52348 2501 1e0d347d532adaa83cb424c5c8b46a80 "pdflatex"
+  "main.tex" 1790118237.20227 23621 75352c99fb6d5360ce713e04646db76f ""
   (generated)
   "main.aux"
   "main.log"

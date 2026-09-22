@@ -1,0 +1,272 @@
+\documentclass[11pt]{article}
+
+% ===================== PAQUETES =====================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
+}
+
+\title{\textbf{Comparaci\'on de T\'ecnicas de Reconstrucci\'on 3D: \\ C\'amaras de Profundidad, Fotogrametr\'ia, \\ NeRF y Gaussian Splatting}}
+
+\author{
+Autores: \\
+Juan Ulises Calderon Huerta \\
+Jonatan Daniel Navarrete G\'omez \\[0.5em]
+Asesor(a): \emph{Por definir} \\[0.5em]
+Ingenier\'ia de Datos e Inteligencia Artificial \\
+Universidad de Guanajuato \\
+Proyecto Integrador
+}
+
+\date{22 de septiembre de 2026}
+
+\begin{document}
+
+\maketitle
+
+
+
+\vspace{1em}
+
+% ===================== INTRODUCCION =====================
+\section{Introducci\'on}
+
+El mapeo y la reconstrucci\'on tridimensional de objetos es un componente central en rob\'otica, realidad aumentada, inspecci\'on industrial y visi\'on por computadora en general. Existen actualmente m\'ultiples familias de t\'ecnicas para obtener un modelo 3D de un objeto f\'isico, con principios de operaci\'on, costos y niveles de madurez muy distintos entre s\'i: sensores de profundidad activos, m\'etodos basados exclusivamente en im\'agenes RGB (fotogrametr\'ia cl\'asica), y m\'etodos m\'as recientes basados en aprendizaje profundo y renderizado diferenciable (Neural Radiance Fields y Gaussian Splatting).
+
+Este proyecto se centra en una \textbf{comparaci\'on experimental de cuatro t\'ecnicas de reconstrucci\'on 3D}: c\'amaras de profundidad (incluyendo variantes est\'ereo activo y LiDAR de estado s\'olido, ambas disponibles en el equipo mediante c\'amaras Intel RealSense), fotogrametr\'ia (Structure-from-Motion), Neural Radiance Fields (NeRF) y 3D Gaussian Splatting (3DGS). El objetivo es caracterizar la exactitud geom\'etrica, el costo computacional/temporal y la facilidad de uso de cada t\'ecnica bajo condiciones controladas, usando \textbf{modelos impresos en 3D de geometr\'ia conocida} como referencia de evaluaci\'on (\emph{ground truth}), dado que el equipo no cuenta con un esc\'aner 3D de mano dedicado.
+
+A trav\'es de este documento se presenta una planificaci\'on integrada ajustada a un periodo de \textbf{10 semanas}, organizada en tres bloques: (1) construcci\'on del dataset y estandarizaci\'on de nubes de puntos, (2) implementaci\'on y ajuste de las cuatro t\'ecnicas, y (3) evaluaci\'on comparativa cuantitativa y cualitativa.
+
+% ===================== JUSTIFICACION =====================
+\section{Justificaci\'on}
+
+\begin{itemize}
+    \item \textbf{Diversidad de principios f\'isicos y algor\'itmicos:} las cuatro t\'ecnicas seleccionadas cubren el espectro completo de enfoques actuales para reconstrucci\'on 3D de objetos: sensado activo directo (c\'amaras de profundidad), geometr\'ia multi-vista cl\'asica (fotogrametr\'ia), y campos de radiancia neuronal entrenados por optimizaci\'on (NeRF y 3DGS). Compararlas bajo el mismo protocolo aporta una visi\'on integral poco com\'un en trabajos que solo consideran dos t\'ecnicas a la vez.
+    \item \textbf{Diferencia t\'ecnica real dentro de "c\'amaras de profundidad":} el equipo cuenta con c\'amaras Intel RealSense que incluyen tanto el principio de \textbf{estereoscop\'ia activa} (familia D400, p.\ ej.\ D435/D435i) como el principio \textbf{LiDAR de tiempo de vuelo (ToF) de estado s\'olido} (familia L500, p.\ ej.\ L515). Estos son mecanismos de medici\'on de profundidad f\'isicamente distintos: la estereoscop\'ia activa triangula disparidad entre dos sensores con un patr\'on IR proyectado, mientras que el LiDAR ToF mide directamente el tiempo de vuelo de un haz l\'aser escaneado mediante un espejo MEMS \cite{realsense_lidar_multisensor,realsense_transparent}. Esto justifica tratar la comparaci\'on \textbf{estereo activo vs.\ LiDAR ToF} como una sub-comparaci\'on relevante dentro de la categor\'ia de c\'amaras de profundidad, en lugar de asumir que toda c\'amara RealSense se comporta igual.
+    \item \textbf{Relevancia para rob\'otica:} entender las diferencias reales entre sensores de profundidad de bajo costo es directamente aplicable a percepci\'on rob\'otica (SLAM, navegaci\'on, manipulaci\'on), \'area de trabajo previo del equipo.
+    \item \textbf{Madurez desigual de las t\'ecnicas:} NeRF y 3DGS son m\'etodos relativamente recientes (2020 y 2023 respectivamente) que a\'un no cuentan con benchmarks tan estandarizados como la fotogrametr\'ia cl\'asica; comparar su exactitud geom\'etrica contra un \emph{ground truth} f\'isico conocido es un aporte experimental genuino y no trivial \cite{nerf_gs_sfm_heritage}.
+    \item \textbf{Restricci\'on de recursos como oportunidad de dise\~no experimental:} al no contar con un esc\'aner 3D de mano dedicado, el equipo genera su propio \emph{ground truth} mediante modelos dise\~nados en CAD e impresos en 3D, estrategia validada en la literatura reciente (p.\ ej.\ MobileBrick) para evitar depender de instrumentaci\'on costosa \cite{mobilebrick,sdf2sdf}.
+    \item \textbf{Car\'acter de investigaci\'on, no de producto:} el valor del proyecto est\'a en la caracterizaci\'on comparativa rigurosa de las cuatro t\'ecnicas, no en desarrollar una soluci\'on comercial de escaneo 3D.
+\end{itemize}
+
+% ===================== ALCANCE =====================
+\section{Alcance del Proyecto}
+
+\subsection{Alcance Confirmado}
+El proyecto compara experimentalmente cuatro t\'ecnicas de reconstrucci\'on 3D de objetos peque\~nos/medianos bajo condiciones de laboratorio controladas:
+
+\begin{enumerate}
+    \item \textbf{C\'amaras de profundidad RealSense}, incluyendo la sub-comparaci\'on entre principio est\'ereo activo (D400) y LiDAR ToF de estado s\'olido (L500), si ambos modelos est\'an disponibles. $\blacksquare$ \emph{Confirmar modelos exactos disponibles.}
+    \item \textbf{Fotogrametr\'ia} (Structure-from-Motion + Multi-View Stereo) a partir de fotograf\'ias RGB convencionales.
+    \item \textbf{Neural Radiance Fields (NeRF)} entrenado sobre el mismo conjunto de im\'agenes usado en fotogrametr\'ia.
+    \item \textbf{3D Gaussian Splatting (3DGS)} entrenado sobre el mismo conjunto de im\'agenes.
+\end{enumerate}
+
+Todas las t\'ecnicas se eval\'uan sobre el mismo conjunto de objetos de prueba, impresos en 3D a partir de modelos CAD dise\~nados por el equipo, que sirven como \emph{ground truth} geom\'etrico exacto.
+
+\subsection*{Fuera de Alcance}
+\begin{itemize}
+    \item Comparaci\'on experimental directa contra un esc\'aner 3D de mano dedicado (no se cuenta con el equipo; su costo se documenta solo como referencia bibliogr\'afica).
+    \item Reconstrucci\'on de escenas din\'amicas, de gran escala, o exteriores.
+    \item Desarrollo de una aplicaci\'on o producto comercial de escaneo 3D.
+    \item Entrenamiento de variantes propias de NeRF/3DGS m\'as all\'a de configuraciones est\'andar disponibles en implementaciones open-source.
+\end{itemize}
+
+% ===================== ANTECEDENTES =====================
+\section{Antecedentes / Trabajos Relacionados}
+
+\subsubsection*{Cámaras de profundidad: estéreo activo vs. LiDAR ToF}
+Existen comparativas directas entre los distintos principios de sensado de profundidad dentro de la familia Intel RealSense. Un estudio que compara D415 (est\'ereo activo), SR305 (luz estructurada) y L515 (LiDAR ToF) en escenarios con transparencia y translucidez encontr\'o que el D415 tuvo el mejor comportamiento general en precisi\'on y repetibilidad, mientras que el L515 ofrece mayor exactitud nominal seg\'un especificaciones del fabricante pero con limitaciones pr\'acticas en ciertas superficies \cite{realsense_transparent}. Las especificaciones oficiales del L515 reportan un error de profundidad promedio menor a 5 mm a 1 metro de distancia, incrementando hasta 14 mm a 9 metros \cite{realsense_l515_specs}. Otro estudio de comparaci\'on multi-sensor observa que, aunque el LiDAR (L515) puede estimar profundidad de forma m\'as precisa que otras t\'ecnicas, es m\'as dif\'icil de sincronizar en configuraciones multi-c\'amara comparado con luz estructurada, mientras que la familia D400 (est\'ereo activo) ofrece la mayor resoluci\'on de profundidad desde una sola vista entre las c\'amaras de consumo recientes \cite{realsense_lidar_multisensor}.
+
+\subsubsection*{Fotogrametr\'ia, NeRF y Gaussian Splatting: comparativas directas}
+Un estudio reciente eval\'ua directamente las tres t\'ecnicas basadas en im\'agenes -- SfM-MVS (fotogrametr\'ia cl\'asica), NeRF y 3D Gaussian Splatting -- aplicadas a patrimonio arquitect\'onico, comparando sus reconstrucciones contra un esc\'aner l\'aser terrestre como referencia. Los resultados muestran que la fotogrametr\'ia cl\'asica (SfM-MVS) mantiene la mejor precisi\'on geom\'etrica, mientras que NeRF y 3DGS destacan en velocidad de procesamiento y calidad de renderizado visual, aunque con mayor error geom\'etrico relativo \cite{nerf_gs_sfm_heritage}. Esto sugiere que, si el proyecto eval\'ua exactitud dimensional (no solo fidelidad visual), la fotogrametr\'ia cl\'asica podr\'ia servir tambi\'en como referencia secundaria interna, adem\'as del CAD impreso.
+
+\subsubsection*{C\'amaras de profundidad frente a m\'etodos de bajo costo dedicados}
+Un estudio que eval\'ua Kinect, un esc\'aner de luz estructurada dedicado y fotogrametr\'ia sobre modelos impresos en 3D encontr\'o que el esc\'aner dedicado super\'o consistentemente a las otras opciones, mientras que la c\'amara de profundidad de consumo obtuvo el desempe\~no m\'as bajo en reproducci\'on de detalle \cite{low_cost_scanning}. Este antecedente valida adem\'as el uso de \textbf{modelos impresos en 3D} como objetos de prueba est\'andar en este tipo de comparativas.
+
+\subsubsection*{Generaci\'on de \emph{ground truth} sin esc\'aner dedicado}
+\textbf{MobileBrick} evita el uso de esc\'aneres 3D costosos construyendo objetos de prueba con piezas LEGO de geometr\'ia exactamente conocida \cite{mobilebrick}. De forma an\'aloga, otros trabajos usan el modelo CAD original de un objeto fabricado/impreso como referencia de exactitud, comparando la nube de puntos reconstruida contra la malla CAD mediante distancia punto-a-malla, con errores medios reportados por debajo del mil\'imetro en configuraciones controladas \cite{sdf2sdf,scanner_sim}.
+
+\subsubsection*{An\'alisis de costo por tecnolog\'ia}
+Existen an\'alisis expl\'icitos de costo por t\'ecnica de digitalizaci\'on 3D que se\~nalan que el costo por muestra depende fuertemente de la escala del proyecto \cite{costo_digitalizacion,review_scanners}, relevante para documentar -- de forma bibliogr\'afica, no experimental -- el costo comparativo de un esc\'aner de mano frente a las t\'ecnicas evaluadas en este proyecto.
+
+% ===================== METODOLOGIA =====================
+\section{Metodolog\'ia}
+
+La metodolog\'ia se organiza en tres bloques secuenciales alineados con el cronograma de 10 semanas: construcci\'on del dataset, implementaci\'on/ajuste de las cuatro t\'ecnicas, y evaluaci\'on comparativa.
+
+\subsection{Bloque 1: Construcci\'on del Dataset y Estandarizaci\'on}
+
+\begin{itemize}
+    \item \textbf{Dise\~no e impresi\'on de objetos de prueba:} 1--2 modelos CAD con geometr\'ia conocida (dise\~nados en Fusion 360/FreeCAD/Blender), impresos en 3D. El archivo CAD original sirve como \emph{ground truth} exacto.
+    \item \textbf{Captura multi-t\'ecnica sobre los mismos objetos:} para cada objeto de prueba se capturan im\'agenes/datos con las cuatro t\'ecnicas bajo las mismas condiciones de iluminaci\'on y \'angulos de c\'amara, para minimizar variables de confusi\'on entre m\'etodos.
+    \begin{itemize}
+        \item C\'amara(s) de profundidad RealSense (est\'ereo activo y/o LiDAR ToF si hay ambos modelos disponibles).
+        \item Serie de fotograf\'ias RGB (30--80 im\'agenes) reutilizada como entrada tanto para fotogrametr\'ia como para NeRF y 3DGS.
+    \end{itemize}
+    \item \textbf{Estandarizaci\'on de nubes de puntos:} dado que cada t\'ecnica produce salidas en formatos y escalas distintas (nube de puntos m\'etrica real en c\'amaras de profundidad, nube/malla en escala relativa en fotogrametr\'ia, campo de radiancia continuo en NeRF, y colecci\'on de gaussianas 3D en 3DGS), se define un pipeline com\'un de:
+    \begin{enumerate}
+        \item Extracci\'on de nube de puntos o malla expl\'icita a partir de cada representaci\'on (muestreo de superficie para NeRF/3DGS).
+        \item Escalado m\'etrico consistente usando el tama\~no conocido del objeto impreso como referencia.
+        \item Registro/alineaci\'on de cada reconstrucci\'on contra el modelo CAD de referencia (ICP + alineaci\'on inicial manual o por landmarks).
+        \item Filtrado de ruido y remoci\'on de outliers con criterios id\'enticos para las cuatro t\'ecnicas, evitando sesgar la comparaci\'on por preprocesamiento desigual.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Bloque 2: Implementaci\'on y Ajuste de las Cuatro T\'ecnicas}
+
+\begin{itemize}
+    \item \textbf{C\'amaras de profundidad:} captura directa de nube de puntos, fusi\'on multi-vista (ICP incremental o TSDF fusion) para consolidar un modelo 3D completo del objeto.
+    \item \textbf{Fotogrametr\'ia:} pipeline SfM + MVS est\'andar (p.\ ej.\ COLMAP) para generar nube de puntos densa y malla.
+    \item \textbf{NeRF:} entrenamiento de una implementaci\'on est\'andar open-source sobre el conjunto de im\'agenes calibradas (poses obtenidas del mismo paso SfM), extracci\'on de superficie mediante marching cubes o muestreo de densidad.
+    \item \textbf{3D Gaussian Splatting:} entrenamiento sobre el mismo conjunto de im\'agenes y poses, extracci\'on de nube de puntos a partir de los centros de las gaussianas resultantes.
+    \item Ajuste de hiperpar\'ametros b\'asico (n\'umero de iteraciones, resoluci\'on) para cada t\'ecnica, documentando tiempos de entrenamiento/procesamiento.
+\end{itemize}
+
+\subsection{Bloque 3: Evaluaci\'on Cuantitativa y Cualitativa}
+
+\subsubsection*{M\'etricas Cuantitativas de Exactitud Geom\'etrica (contra CAD/impreso)}
+\begin{itemize}
+    \item \textbf{Distancia punto-a-malla (cloud-to-mesh):} distancia m\'inima de cada punto reconstruido a la superficie CAD de referencia; se reportan media y desviaci\'on est\'andar \cite{sdf2sdf,scanner_sim}.
+    \item \textbf{Distancia de Chamfer (CD):} distancia promedio bidireccional entre la nube reconstruida y una nube muestreada densamente sobre el CAD \cite{chamfer_survey,plant_reconstruction}.
+    \[
+    d_{CD}(P_1, P_2) = \frac{1}{|P_1|}\sum_{x \in P_1} \min_{y \in P_2} \lVert x-y \rVert^2 + \frac{1}{|P_2|}\sum_{y \in P_2} \min_{x \in P_1} \lVert y-x \rVert^2
+    \]
+    \item \textbf{Distancia de Hausdorff (HD):} m\'axima distancia entre un punto de la reconstrucci\'on y su vecino m\'as cercano en el CAD, capturando el peor caso \cite{nerf_sfm_comparison}.
+    \item \textbf{F-Score (precisi\'on y completitud):} combina precisi\'on y completitud respecto al CAD mediante media arm\'onica \cite{point_cloud_completion_survey,asset_inspection_benchmark}.
+    \item \textbf{Error dimensional directo:} comparaci\'on de medidas f\'isicas espec\'ificas (calibrador vernier) contra las mismas medidas extra\'idas de cada reconstrucci\'on.
+\end{itemize}
+
+\subsubsection*{M\'etricas Adicionales para NeRF/3DGS}
+Dado que NeRF y 3DGS tambi\'en producen s\'intesis de vistas nuevas, se reportar\'an adicionalmente m\'etricas de calidad de imagen (PSNR, SSIM) comparando renders contra fotograf\'ias reales no usadas en el entrenamiento, siguiendo la pr\'actica est\'andar en la literatura de estas t\'ecnicas \cite{nerf_gs_sfm_heritage}.
+
+\subsubsection*{Evaluaci\'on de Costo y Tiempo}
+Tiempo de captura, tiempo de procesamiento/entrenamiento, y requerimientos de hardware (CPU/GPU) por t\'ecnica, junto con un costo estimado del equipo usado (c\'amaras RealSense disponibles vs.\ solo c\'amara RGB para fotogrametr\'ia/NeRF/3DGS).
+
+\subsubsection*{Evaluaci\'on Cualitativa}
+Comparaci\'on visual lado a lado de las cuatro reconstrucciones contra el objeto f\'isico y el modelo CAD, documentando huecos, artefactos, ruido y fidelidad de detalle fino, como complemento a las m\'etricas num\'ericas \cite{low_cost_scanning}.
+
+% ===================== METAS Y ENTREGABLES =====================
+\section{Metas y Entregables}
+
+\begin{enumerate}
+    \item \textbf{Documento de Proyecto (LaTeX):} reporte t\'ecnico con revisi\'on de literatura, metodolog\'ia y an\'alisis de resultados.
+    \item \textbf{Modelos CAD y objetos impresos:} 1--2 dise\~nos propios con geometr\'ia conocida, usados como \emph{ground truth}.
+    \item \textbf{Dataset propio multi-t\'ecnica:} capturas de c\'amara(s) de profundidad, series fotogr\'aficas para fotogrametr\'ia/NeRF/3DGS, sobre los mismos objetos y condiciones.
+    \item \textbf{Pipeline de estandarizaci\'on:} scripts documentados para extracci\'on de nube de puntos, escalado m\'etrico, registro contra CAD y filtrado, aplicables a las cuatro t\'ecnicas.
+    \item \textbf{Cuatro reconstrucciones por objeto:} salidas de c\'amara de profundidad, fotogrametr\'ia, NeRF y 3DGS.
+    \item \textbf{Tabla comparativa cuantitativa:} m\'etricas de exactitud geom\'etrica (distancia punto-a-malla, Chamfer, Hausdorff, F-Score), costo y tiempo por t\'ecnica.
+    \item \textbf{Presentaci\'on Final:} diapositivas y demostraci\'on para la evaluaci\'on del curso.
+\end{enumerate}
+
+% ===================== CRONOGRAMA =====================
+\section{Cronograma (10 Semanas)}
+
+La Tabla~\ref{tab:cronograma} presenta el cronograma a 10 semanas, organizado en los tres bloques descritos en la Secci\'on 4, con divisi\'on de responsabilidades entre Ulises y Jonatan.
+
+\begin{longtable}{p{7.2cm} c c}
+\toprule
+\textbf{Actividad (responsable)} & \textbf{Duraci\'on} & \textbf{Periodo} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Actividad (responsable)} & \textbf{Duraci\'on} & \textbf{Periodo} \\
+\midrule
+\endhead
+\multicolumn{3}{l}{\textit{Bloque 1: Construcci\'on del dataset y estandarizaci\'on}} \\
+Revisi\'on bibliogr\'afica acotada y confirmaci\'on de alcance/hardware (Ulises + Jonatan) $\blacksquare$ & 1 & 1 \\
+Dise\~no de modelo(s) CAD de prueba y env\'io a impresi\'on 3D (Jonatan: dise\~no CAD; Ulises: setup de c\'amaras RealSense y entorno de captura) & 1 & 2 \\
+Recepci\'on de piezas impresas, medici\'on f\'isica de referencia con calibrador; primeras capturas con c\'amara(s) de profundidad y series fotogr\'aficas (Ulises: capturas c\'amara de profundidad; Jonatan: capturas fotogr\'aficas y control de calidad de impresi\'on) & 1 & 3 \\
+Definici\'on y desarrollo del pipeline de estandarizaci\'on: extracci\'on de nube de puntos, escalado m\'etrico y registro contra CAD (Ulises: registro/ICP; Jonatan: escalado y estructura de datos) & 1 & 4 \\
+\multicolumn{3}{l}{\textit{Bloque 2: Implementaci\'on y ajuste de las cuatro t\'ecnicas}} \\
+Reconstrucci\'on con c\'amara(s) de profundidad y fotogrametr\'ia (SfM/COLMAP) sobre el pipeline estandarizado (Ulises: c\'amaras de profundidad; Jonatan: fotogrametr\'ia) & 1 & 5 \\
+Entrenamiento inicial de NeRF sobre el dataset fotogr\'afico existente (Jonatan: NeRF; Ulises: soporte en c\'omputo/GPU y validaci\'on de poses) & 1 & 6 \\
+Entrenamiento inicial de 3D Gaussian Splatting sobre el mismo dataset (Ulises: 3DGS; Jonatan: comparaci\'on preliminar de tiempos NeRF vs.\ 3DGS) & 1 & 7 \\
+Ajuste fino de las cuatro t\'ecnicas (hiperpar\'ametros, resoluci\'on, iteraciones) y extracci\'on final de nubes/mallas comparables (Ulises + Jonatan) & 1 & 8 \\
+\multicolumn{3}{l}{\textit{Bloque 3: Evaluaci\'on}} \\
+Implementaci\'on de m\'etricas cuantitativas (distancia punto-a-malla, Chamfer, Hausdorff, F-Score, PSNR/SSIM para NeRF/3DGS) y ejecuci\'on sobre las cuatro t\'ecnicas (Jonatan: scripts de m\'etricas; Ulises: validaci\'on cruzada de resultados) & 1 & 9 \\
+An\'alisis comparativo final (cuantitativo + cualitativo + costo/tiempo), redacci\'on del reporte y preparaci\'on de presentaci\'on/demo (Ulises + Jonatan) & 1 & 10 \\
+\bottomrule
+\caption{Cronograma de actividades (10 semanas) organizado en tres bloques: construcci\'on de dataset (semanas 1--4), implementaci\'on y ajuste de las cuatro t\'ecnicas (semanas 5--8), y evaluaci\'on comparativa (semanas 9--10).}
+\label{tab:cronograma}
+\end{longtable}
+
+% ===================== PENDIENTES =====================
+\section{Pendientes Antes de la Siguiente Reuni\'on de Equipo}
+
+\begin{itemize}
+    \item Confirmar qu\'e modelo(s) exacto(s) de c\'amara RealSense est\'an disponibles (¿solo D400/D435i, solo L515, o ambos?), ya que determina si la sub-comparaci\'on est\'ereo activo vs.\ LiDAR ToF es viable.
+    \item Confirmar acceso a GPU con memoria suficiente para entrenar NeRF y 3DGS en tiempos razonables dentro del cronograma de 10 semanas.
+    \item Confirmar acceso a impresora 3D y tiempo de entrega de las piezas impresas.
+    \item Definir software de dise\~no CAD (Fusion 360, FreeCAD, Blender) e implementaciones open-source espec\'ificas de NeRF y 3DGS a utilizar.
+    \item Revisar si el proyecto se enmarca en una materia con formato de reporte espec\'ifico (extensi\'on, n\'umero m\'inimo de referencias, asesor asignado).
+\end{itemize}
+
+% ===================== REFERENCIAS =====================
+\begin{thebibliography}{99}
+
+\bibitem{chamfer_survey}
+Survey of Latest Advancements in Deep Learning for Point Cloud Completion. \emph{IEEE Transactions on Visualization and Computer Graphics}, 2026.
+
+\bibitem{plant_reconstruction}
+Evaluation of one-image 3D reconstruction for plant model generation. \emph{Plant Methods}, Springer, 2026.
+
+\bibitem{point_cloud_completion_survey}
+Point Cloud Quality Metrics for Incremental Image-based 3D Reconstruction. Tesis, Fraunhofer, 2024.
+
+\bibitem{nerf_sfm_comparison}
+Comparison of NeRF- and SfM-Based Methods for Point Cloud Generation. Universidad Polit\'ecnica de Madrid, 2024.
+
+\bibitem{asset_inspection_benchmark}
+A 3D Reconstruction Benchmark for Asset Inspection. arXiv:2603.17358, 2026.
+
+\bibitem{low_cost_scanning}
+Performance Evaluation of Low-Cost 3D Scanning Techniques. \emph{RITA}, 2026.
+
+\bibitem{review_scanners}
+Review of Different 3D Scanners and Scanning Techniques. \emph{IOSR-JEN}, 2018.
+
+\bibitem{costo_digitalizacion}
+Cost Analysis of 3D Digitisation Techniques. DIPP Journal, 2014.
+
+\bibitem{mobilebrick}
+Li, K. et al. MobileBrick: Building LEGO for 3D Reconstruction on Mobile Devices. \emph{CVPR}, 2023.
+
+\bibitem{sdf2sdf}
+Slavcheva, M. et al. SDF-2-SDF: Highly Accurate 3D Object Reconstruction. \emph{ECCV}, 2016.
+
+\bibitem{scanner_sim}
+Hardware Design and Accurate Simulation of Structured-Light Scanners for Ground-Truth Generation. Documento t\'ecnico, 2022.
+
+\bibitem{nerf_gs_sfm_heritage}
+Clini, P. et al. A Comparative Analysis of NeRF, Gaussian Splatting, and SfM for Architectural Heritage 3D Representation. Universit\`a Politecnica delle Marche, 2024.
+
+\bibitem{realsense_transparent}
+An Experimental Assessment of Depth Estimation in Transparent and Translucent Scenes for Intel RealSense D415, SR305 and L515. \emph{Sensors (MDPI)}, 22(19):7378, 2022.
+
+\bibitem{realsense_l515_specs}
+Intel\textregistered\ RealSense\texttrademark\ LiDAR Camera L515 -- Product Specifications. Intel Corporation, 2022.
+
+\bibitem{realsense_lidar_multisensor}
+Multiple Sensor Synchronization with the RealSense RGB-D Camera. \emph{PMC / NIH}, 2021.
+
+\end{thebibliography}
+
+\end{document}
